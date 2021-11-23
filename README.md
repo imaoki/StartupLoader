@@ -25,7 +25,7 @@
 ## アンインストール
 
 ```maxscript
-;::startupScriptLoader.Uninstall()
+::startupScriptLoader.Uninstall()
 ```
 
 ## 使い方
