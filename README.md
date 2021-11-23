@@ -1,48 +1,34 @@
 # StartupScriptLoader
 
-スタートアップスクリプトを管理する
+スタートアップスクリプトを管理する。
 
-# インストール
+## インストール
 
-1.  スクリプトを実行
-
-2.  インスタンス化とスタートアップスクリプトの保存
-
-    * グローバル変数名に既定値の`startupScriptLoader`を使用する場合
-
-      ```maxscript
-      (StartupScriptLoaderStruct()).Save()
-      ```
-
-    * グローバル変数名を指定する場合
-
-      ```maxscript
-      (StartupScriptLoaderStruct "hoge").Save()
-      ```
-
-    グローバル変数の定義は内部的に行われる。
+`install.ms`を実行する。
 
 ## アンインストール
 
+`uninstall.ms`を実行する。
+
+## スクリプトをスタートアップに登録する
+
+スクリプトの起動処理の最後に以下のコードを配置する。
+
 ```maxscript
-::startupScriptLoader.Uninstall()
+if isProperty ::startupScriptLoader "RegisterScript" do (
+  ::startupScriptLoader.RegisterScript (getSourceFileName())
+  ::startupScriptLoader.Save()
+)
 ```
 
-## 使い方
+## スクリプトをスタートアップから登録解除する
 
-1.  ツールの起動処理が完了する箇所（Openイベント等）に以下のコードを挿入する。
+スクリプトの終了処理の最後に以下のコードを配置する。
+`UnregisterScript`メソッドの引数には登録時のファイルパスを渡す。
 
-    ```maxscript
-    if isProperty ::startupScriptLoader "RegisterScript" do (
-      ::startupScriptLoader.RegisterScript (getSourceFileName())
-      ::startupScriptLoader.Save()
-    )
-    ```
-2.  ツールの終了処理が完了する箇所（Closeイベント等）に以下のコードを挿入する。
-
-    ```maxscript
-    if isProperty ::startupScriptLoader "UnregisterScript" do (
-      ::startupScriptLoader.UnregisterScript (getSourceFileName())
-      ::startupScriptLoader.Save()
-    )
-    ```
+```maxscript
+if isProperty ::startupScriptLoader "UnregisterScript" do (
+  ::startupScriptLoader.UnregisterScript (getSourceFileName())
+  ::startupScriptLoader.Save()
+)
+```
