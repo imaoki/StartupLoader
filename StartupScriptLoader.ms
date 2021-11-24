@@ -149,7 +149,7 @@ struct StartupScriptLoaderStruct (
   @returns <OkClass>
   */
   public fn Uninstall = (
-    this.delete()
+    this.deleteStartupFile()
     this.destroyGlobalVar()
   ),
 
@@ -187,7 +187,7 @@ struct StartupScriptLoaderStruct (
   スタートアップファイルを削除する。
   @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
   */
-  private fn delete = (
+  private fn deleteStartupFile = (
     local result = not this.existsStartupFile()
     if not result do (
       this.fileClass.Delete this.startupFilePath
@@ -242,21 +242,6 @@ struct StartupScriptLoaderStruct (
   /*- @returns <Name> */
   public fn StructName = #StartupScriptLoaderStruct,
 
-  /*- @prop <Array[<Struct:ObserverStruct>]> オブザーバ。 */
-  private observers = #(),
-
-  /*-
-  オブザーバを追加する。
-  @param observer <Struct:ObserverStruct> オブザーバ。
-  @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
-  */
-  public fn AddObserver observer = (
-    if this.findObserver observer == 0 do (
-      append this.observers observer
-    )
-    this.findObserver observer > 0
-  ),
-
   /*-
   @param indent: <String>
   @param out: <FileStream|StringStream|WindowStream> 出力先。既定値は`listener`。
@@ -292,8 +277,21 @@ struct StartupScriptLoaderStruct (
     isEqualStructName and isEqualProperties
   ),
 
+  /*- @prop <Array[<Struct:ObserverStruct>]> オブザーバ。 */
+  private observers = #(),
+
   /*-
-  オブザーバを削除する。
+  @param observer <Struct:ObserverStruct> オブザーバ。
+  @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
+  */
+  public fn AddObserver observer = (
+    if this.findObserver observer == 0 do (
+      append this.observers observer
+    )
+    this.findObserver observer > 0
+  ),
+
+  /*-
   @param observer <Struct:ObserverStruct> オブザーバ。
   @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
   */
@@ -320,7 +318,6 @@ struct StartupScriptLoaderStruct (
   ),
 
   /*-
-  パラメータの更新を通知する。
   @param params <Array[<Name>]> 通知するパラメータ名。
   @returns <OkClass>
   */
