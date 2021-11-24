@@ -33,6 +33,10 @@ if isProperty ::startupScriptLoader "UnregisterScript" do (
 )
 ```
 
+## スタートアップファイルの保存先
+
+`C:\Users\ユーザー名\AppData\Local\Autodesk\3dsMax\2021 - 64bit\ENU\scripts\startup\StartupScriptLoader.ms`
+
 ## ライセンス
 
 [MIT License](https://github.com/imaoki/StartupScriptLoader/blob/main/LICENSE)
