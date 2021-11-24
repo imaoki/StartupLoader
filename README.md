@@ -32,3 +32,7 @@ if isProperty ::startupScriptLoader "UnregisterScript" do (
   ::startupScriptLoader.Save()
 )
 ```
+
+## ライセンス
+
+[MIT License](https://github.com/imaoki/StartupScriptLoader/blob/main/LICENSE)
