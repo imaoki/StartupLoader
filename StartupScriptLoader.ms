@@ -277,11 +277,11 @@ struct StartupScriptLoaderStruct (
     isEqualStructName and isEqualProperties
   ),
 
-  /*- @prop <Array[<Struct:ObserverStruct>]> オブザーバ。 */
+  /*- @prop <Array[<Struct:ObserverStruct>]> */
   private observers = #(),
 
   /*-
-  @param observer <Struct:ObserverStruct> オブザーバ。
+  @param observer <Struct:ObserverStruct>
   @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
   */
   public fn AddObserver observer = (
@@ -292,7 +292,7 @@ struct StartupScriptLoaderStruct (
   ),
 
   /*-
-  @param observer <Struct:ObserverStruct> オブザーバ。
+  @param observer <Struct:ObserverStruct>
   @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
   */
   public fn RemoveObserver observer = (
