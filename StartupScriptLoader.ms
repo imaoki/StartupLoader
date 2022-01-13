@@ -202,6 +202,7 @@ struct StartupScriptLoaderStruct (
   /*-
   グローバル変数を破棄する。
   @returns <OkClass>
+  @remarks 安全性を鑑みて変数名は削除せず、値のみ`undefined`で上書きする。
   */
   private fn destroyGlobalVar = (
     if GlobalVars.IsGlobal this.globalVarName do (
