@@ -72,6 +72,9 @@
   /* Test End --------------------------------------------------------------- */
   sw.Stop()
   /* Teardown Start --------------------------------------------------------- */
+  if isProperty ::startupScriptLoader "RegisterScript" do (
+    ::startupScriptLoader.Save()
+  )
   /* Teardown End ----------------------------------------------------------- */
   format "[end %]%ms\n" nowTime (sw.ElapsedMilliseconds as Integer)
   ok
