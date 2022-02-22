@@ -14,9 +14,11 @@
 
 `uninstall.ms`を実行する。
 
-## スクリプトをスタートアップに登録する
+## 使い方
 
-スクリプトの起動処理の最後に以下のコードを配置する。
+### スクリプトをスタートアップに登録する
+
+以下のコードをスタートアップ時に実行したいスクリプトファイルの任意の位置に挿入する。
 
 ```maxscript
 if isProperty ::startupScriptLoader "RegisterScript" do (
@@ -25,19 +27,20 @@ if isProperty ::startupScriptLoader "RegisterScript" do (
 )
 ```
 
-## スクリプトをスタートアップから登録解除する
+### スタートアップからスクリプトを登録解除する
 
-スクリプトの終了処理の最後に以下のコードを配置する。
+以下のコードを登録解除用のスクリプトファイルの任意の位置に挿入する。
 `UnregisterScript`メソッドの引数には登録時のファイルパスを渡す。
 
 ```maxscript
 if isProperty ::startupScriptLoader "UnregisterScript" do (
-  ::startupScriptLoader.UnregisterScript (getSourceFileName())
+  local registerFile = substituteString (getSourceFileName()) "unregister.ms" "register.ms"
+  ::startupScriptLoader.UnregisterScript registerFile
   ::startupScriptLoader.Save()
 )
 ```
 
-## スタートアップファイルの保存先
+## 既定のスタートアップファイルの保存先
 
 `C:\Users\ユーザー名\AppData\Local\Autodesk\3dsMax\バージョン\ENU\scripts\startup\StartupScriptLoader.ms`
 
