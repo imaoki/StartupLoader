@@ -29,6 +29,25 @@ struct StartupScriptLoaderStruct (
   /*- @prop <DotNetObject:System.Text.UTF8Encoding> */
   private utf8withoutBOM = DotNetObject "System.Text.UTF8Encoding" false,
 
+  /*
+  public fn GetGlobalVarName = (),
+  public fn GetScriptFiles = (),
+  public fn GetStartupFileName = (),
+  public fn GetStartupFilePath = (),
+  public fn OnPreSystemShutdown = (),
+  public fn RegisterScript scriptFilePath = (),
+  public fn Save = (),
+  public fn Uninstall = (),
+  public fn UnregisterScript scriptFilePath = (),
+
+  private fn defineGlobalVar = (),
+  private fn deleteStartupFile = (),
+  private fn destroyGlobalVar = (),
+  private fn existsStartupFile = (),
+  private fn initializeStartupFilePath = (),
+  private fn registerPreSystemShutdown = (),
+  */
+
   /*-
   グローバル変数名を取得する。
   @returns <String>
