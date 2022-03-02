@@ -15,7 +15,7 @@
 
   format "[run %]@\"%\"\n" nowTime currentFile
   /* Setup Start ------------------------------------------------------------ */
-  testDef = fileIn (pathUtility.GetFullPath @"..\StartupScriptLoader.ms")
+  testDef = fileIn (pathUtility.GetFullPath @"..\StartupLoader.ms")
   testObj = testDef "testLoader"
   /* Setup End -------------------------------------------------------------- */
   sw.Start()
@@ -40,12 +40,12 @@
 
   /* GetStartupFileName */
   actual = ::TestValueStruct (testObj.GetStartupFileName())
-  expected = ::TestValueStruct "StartupScriptLoader"
+  expected = ::TestValueStruct "StartupLoader"
   assert (actual.Equals expected == true)
 
   /* GetStartupFilePath */
   actual = ::TestValueStruct (testObj.GetStartupFilePath())
-  expected = ::TestValueStruct (SymbolicPaths.GetPathValue "$UserStartupScripts" + @"\StartupScriptLoader.ms")
+  expected = ::TestValueStruct (SymbolicPaths.GetPathValue "$UserStartupScripts" + @"\StartupLoader.ms")
   assert (actual.Equals expected == true)
 
   /* OnPreSystemShutdown */
@@ -72,8 +72,8 @@
   /* Test End --------------------------------------------------------------- */
   sw.Stop()
   /* Teardown Start --------------------------------------------------------- */
-  if isProperty ::startupScriptLoader "RegisterScript" do (
-    ::startupScriptLoader.Save()
+  if isProperty ::startupLoader "RegisterScript" do (
+    ::startupLoader.Save()
   )
   /* Teardown End ----------------------------------------------------------- */
   format "[end %]%ms\n" nowTime (sw.ElapsedMilliseconds as Integer)
