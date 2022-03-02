@@ -84,6 +84,7 @@ struct StartupScriptLoaderStruct (
   #PreSystemShutdownコールバックによって呼び出されるメソッド。
   */
   public fn OnPreSystemShutdown = (
+    this.Save()
     this.hasSystemShutdownStarted = true
     ok
   ),
