@@ -105,6 +105,8 @@ struct StartupScriptLoaderStruct (
         format "fileIn @\"%\"\n" filePath to:content
       )
 
+      format "::%.Save()\n" this.globalVarName to:content
+
       content = content as String
 
       this.fileClass.WriteAllText this.startupFilePath content this.utf8withoutBOM
