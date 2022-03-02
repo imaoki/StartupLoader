@@ -23,7 +23,6 @@
 ```maxscript
 if isProperty ::startupScriptLoader "RegisterScript" do (
   ::startupScriptLoader.RegisterScript (getSourceFileName())
-  ::startupScriptLoader.Save()
 )
 ```
 
