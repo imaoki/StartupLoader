@@ -1,4 +1,4 @@
-# StartupScriptLoader
+# StartupLoader
 
 スタートアップスクリプトを管理する。
 
@@ -14,35 +14,48 @@
 
 `uninstall.ms`を実行する。
 
-## 使い方
+## スタンドアローン版
 
-### スクリプトをスタートアップに登録する
+### インストール
 
-以下のコードをスタートアップ時に実行したいスクリプトファイルの任意の位置に挿入する。
+`StartupLoader.min.ms`を実行する。
+
+### アンインストール
 
 ```maxscript
-if isProperty ::startupScriptLoader "RegisterScript" do (
-  ::startupScriptLoader.RegisterScript (getSourceFileName())
+::startupLoader.Uninstall()
+```
+
+## 使い方
+
+### スクリプトファイルをスタートアップに登録する
+
+```maxscript
+if isProperty ::startupLoader "RegisterScript" do (
+  ::startupLoader.RegisterScript (getSourceFileName())
 )
 ```
 
-### スタートアップからスクリプトを登録解除する
-
-以下のコードを登録解除用のスクリプトファイルの任意の位置に挿入する。
-`UnregisterScript`メソッドの引数には登録時のファイルパスを渡す。
+### スタートアップからスクリプトファイルを登録解除する
 
 ```maxscript
-if isProperty ::startupScriptLoader "UnregisterScript" do (
-  local registerFile = substituteString (getSourceFileName()) "unregister.ms" "register.ms"
-  ::startupScriptLoader.UnregisterScript registerFile
-  ::startupScriptLoader.Save()
+if isProperty ::startupLoader "UnregisterScript" do (
+  ::startupLoader.UnregisterScript (getSourceFileName())
 )
+```
+
+* `UnregisterScript`メソッドの引数には登録時と同じファイルパスを渡す。
+
+### スタートアップスクリプトの保存
+
+```maxscript
+::startupLoader.Save()
 ```
 
 ## 既定のスタートアップファイルの保存先
 
-`C:\Users\ユーザー名\AppData\Local\Autodesk\3dsMax\バージョン\ENU\scripts\startup\StartupScriptLoader.ms`
+`C:\Users\ユーザー名\AppData\Local\Autodesk\3dsMax\バージョン\ENU\scripts\startup\StartupLoader.ms`
 
 ## ライセンス
 
-[MIT License](https://github.com/imaoki/StartupScriptLoader/blob/main/LICENSE)
+[MIT License](https://github.com/imaoki/StartupLoader/blob/main/LICENSE)
