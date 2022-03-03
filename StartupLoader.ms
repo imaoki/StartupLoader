@@ -74,6 +74,7 @@ struct StartupLoaderStruct (
   */
   public fn Install = (
     (::StartupLoaderStruct()).Save()
+    format "[install]::startupLoader\n"
     ok
   ),
 
@@ -141,7 +142,7 @@ struct StartupLoaderStruct (
     this.unregisterPreSystemShutdown()
     this.deleteStartupFile()
     ::startupLoader = undefined
-    format "[destroy]::startupLoader\n"
+    format "[uninstall]::startupLoader\n"
     ok
   ),
 
@@ -311,6 +312,5 @@ struct StartupLoaderStruct (
     ::startupLoader = this
     this.initializeStartupFilePath()
     this.registerPreSystemShutdown()
-    format "[define]::startupLoader\n"
   )
 )
