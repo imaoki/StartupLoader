@@ -31,16 +31,16 @@
 ### スクリプトファイルをスタートアップに登録する
 
 ```maxscript
-if isProperty ::startupLoader "RegisterScript" do (
-  ::startupLoader.RegisterScript (getSourceFileName())
+if isProperty ::startupLoader "RegisterFile" do (
+  ::startupLoader.RegisterFile (getSourceFileName())
 )
 ```
 
 #### インストーラとして評価する
 
 ```maxscript
-if isProperty ::startupLoader "RegisterScript" do (
-  ::startupLoader.RegisterScript (getSourceFileName()) installer:true
+if isProperty ::startupLoader "RegisterFile" do (
+  ::startupLoader.RegisterFile (getSourceFileName()) installer:true
 )
 ```
 
@@ -53,12 +53,12 @@ if isProperty ::startupLoader "RegisterScript" do (
 ### スタートアップからスクリプトファイルを登録解除する
 
 ```maxscript
-if isProperty ::startupLoader "UnregisterScript" do (
-  ::startupLoader.UnregisterScript (getSourceFileName())
+if isProperty ::startupLoader "UnregisterFile" do (
+  ::startupLoader.UnregisterFile (getSourceFileName())
 )
 ```
 
-* `UnregisterScript`メソッドの引数には登録時と同じファイルパスを渡す。
+* `UnregisterFile`メソッドの引数には登録時と同じファイルパスを渡す。
 
 ### スタートアップスクリプトの保存
 
