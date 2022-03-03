@@ -91,7 +91,7 @@ struct StartupLoaderStruct (
   @param scriptFilePath <String>
   @param installer: <BooleanClass> ファイルをインストーラとして評価する場合は`true`、通常のスクリプトとして評価する場合は`false`。既定値は`false`。
   @returns <BooleanClass> 成功した場合（既に登録済みの場合も）は`true`、失敗した場合は`false`。
-  @remarks インストーラとして評価する場合、スクリプトファイルは以下の条件を満たしていなければならない。
+  @remarks 登録したスクリプトファイルをインストーラとして評価するには以下の条件を満たす必要がある。
 
   * スクリプトファイルの評価結果が構造体定義であること
 
