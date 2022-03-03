@@ -50,6 +50,7 @@
     on Create do ()
   )
 
+  local expectedInstallerFlags = #()
   local expectedScriptFiles = #()
   local expectedStartupFilePath = SymbolicPaths.GetPathValue "$UserStartupScripts" + @"\StartupLoader.ms"
 
@@ -59,6 +60,11 @@
     if classOf params == Array do (
       for param in params do (
         case param of (
+          (#InstallerFlags): (
+            actual = ::TestValueStruct (testObj.GetInstallerFlags())
+            expected = ::TestValueStruct expectedInstallerFlags
+            assert (actual.Equals expected == true)
+          )
           (#ScriptFiles): (
             actual = ::TestValueStruct (testObj.GetScriptFiles())
             expected = ::TestValueStruct expectedScriptFiles
@@ -71,7 +77,13 @@
     ok
   )
 
-  local testFilePath = currentDir + @"\test.ms"
+  local testFilePath1 = currentDir + @"\test1.ms"
+  local testFilePath2 = currentDir + @"\test2.ms"
+
+  -- 既存のスタートアップスクリプトファイルを削除
+  if fileClass.Exists expectedStartupFilePath do (
+    fileClass.Delete expectedStartupFilePath
+  )
 
   testDef = fileIn (getFullPath @"..\StartupLoader.ms")
   /* Setup End -------------------------------------------------------------- */
@@ -91,6 +103,12 @@
   -- スタートアップファイルの存在を確認
   actual = ::TestValueStruct (fileClass.Exists expectedStartupFilePath)
   expected = ::TestValueStruct false
+  assert (actual.Equals expected == true)
+
+  /* GetInstallerFlags */
+  expectedInstallerFlags = #()
+  actual = ::TestValueStruct (testObj.GetInstallerFlags())
+  expected = ::TestValueStruct expectedInstallerFlags
   assert (actual.Equals expected == true)
 
   /* GetScriptFiles */
@@ -124,27 +142,34 @@
   /* OnPreSystemShutdown */
 
   /* RegisterFile */
-  expectedScriptFiles = #(testFilePath)
-  actual = ::TestValueStruct (testObj.RegisterFile testFilePath)
+  -- 通常のスクリプト
+  expectedInstallerFlags = #(false)
+  expectedScriptFiles = #(testFilePath1)
+  actual = ::TestValueStruct (testObj.RegisterFile testFilePath1)
   expected = ::TestValueStruct true
   assert (actual.Equals expected == true)
-  -- 登録されたファイルを確認
-  actual = ::TestValueStruct (testObj.GetScriptFiles())
-  expected = ::TestValueStruct expectedScriptFiles
+  -- インストーラー
+  expectedInstallerFlags = #(false, true)
+  expectedScriptFiles = #(testFilePath1, testFilePath2)
+  actual = ::TestValueStruct (testObj.RegisterFile testFilePath2 installer:true)
+  expected = ::TestValueStruct true
+  assert (actual.Equals expected == true)
+  -- 重複登録（状態変化無し）
+  expectedInstallerFlags = #(false, true)
+  expectedScriptFiles = #(testFilePath1, testFilePath2)
+  actual = ::TestValueStruct (testObj.RegisterFile testFilePath1)
+  expected = ::TestValueStruct true
   assert (actual.Equals expected == true)
 
-  -- testObj.Dump()
+  testObj.Dump()
 
   /* Save */
 
   /* UnregisterFile */
-  expectedScriptFiles = #()
-  actual = ::TestValueStruct (testObj.UnregisterFile testFilePath)
+  expectedInstallerFlags = #(true)
+  expectedScriptFiles = #(testFilePath2)
+  actual = ::TestValueStruct (testObj.UnregisterFile testFilePath1)
   expected = ::TestValueStruct true
-  assert (actual.Equals expected == true)
-  -- 登録されたファイルを確認
-  actual = ::TestValueStruct (testObj.GetScriptFiles())
-  expected = ::TestValueStruct expectedScriptFiles
   assert (actual.Equals expected == true)
 
   /* Uninstall */
