@@ -18,7 +18,7 @@
 
 ### インストール
 
-`StartupLoader.min.ms`を実行する。
+`Distribution\StartupLoader.min.ms`を実行する。
 
 ### アンインストール
 
