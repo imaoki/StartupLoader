@@ -123,9 +123,9 @@
 
   /* OnPreSystemShutdown */
 
-  /* RegisterScript */
+  /* RegisterFile */
   expectedScriptFiles = #(testFilePath)
-  actual = ::TestValueStruct (testObj.RegisterScript testFilePath)
+  actual = ::TestValueStruct (testObj.RegisterFile testFilePath)
   expected = ::TestValueStruct true
   assert (actual.Equals expected == true)
   -- 登録されたファイルを確認
@@ -137,9 +137,9 @@
 
   /* Save */
 
-  /* UnregisterScript */
+  /* UnregisterFile */
   expectedScriptFiles = #()
-  actual = ::TestValueStruct (testObj.UnregisterScript testFilePath)
+  actual = ::TestValueStruct (testObj.UnregisterFile testFilePath)
   expected = ::TestValueStruct true
   assert (actual.Equals expected == true)
   -- 登録されたファイルを確認

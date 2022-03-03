@@ -28,10 +28,10 @@ struct StartupLoaderStruct (
   public fn GetStartupFilePath = (),
   public fn Install = (),
   public fn OnPreSystemShutdown = (),
-  public fn RegisterScript scriptFilePath = (),
+  public fn RegisterFile scriptFilePath = (),
   public fn Save = (),
   public fn Uninstall = (),
-  public fn UnregisterScript scriptFilePath = (),
+  public fn UnregisterFile scriptFilePath = (),
 
   private fn deleteStartupFile = (),
   private fn existsStartupFile = (),
@@ -80,7 +80,7 @@ struct StartupLoaderStruct (
   @param scriptFilePath <String>
   @returns <BooleanClass> 成功した場合（既に登録済みの場合も）は`true`、失敗した場合は`false`。
   */
-  public fn RegisterScript scriptFilePath = (
+  public fn RegisterFile scriptFilePath = (
     if findItem this.scriptFiles scriptFilePath == 0 do (
       append this.scriptFiles scriptFilePath
       this.notify #(#ScriptFiles)
@@ -125,9 +125,9 @@ struct StartupLoaderStruct (
   スクリプトファイルを登録解除する。
   @param scriptFilePath <String>
   @returns <BooleanClass> 成功した場合（元から登録されていない場合も）は`true`、失敗した場合は`false`。
-  @remarks シャットダウンプロセス中は処理を行わない。
+  @remarks ツールの終了処理によって状態が変更されることを防ぐため、シャットダウンプロセス中は処理を行わない。
   */
-  public fn UnregisterScript scriptFilePath = (
+  public fn UnregisterFile scriptFilePath = (
     if not this.hasSystemShutdownStarted do (
       local index = findItem this.scriptFiles scriptFilePath
       if index > 0 do (
