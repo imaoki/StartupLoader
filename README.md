@@ -36,6 +36,20 @@ if isProperty ::startupLoader "RegisterScript" do (
 )
 ```
 
+#### インストーラとして評価する
+
+```maxscript
+if isProperty ::startupLoader "RegisterScript" do (
+  ::startupLoader.RegisterScript (getSourceFileName()) installer:true
+)
+```
+
+登録したスクリプトファイルをインストーラとして評価するには以下の条件を満たす必要がある。
+
+* スクリプトファイルの評価結果が構造体定義であること。
+
+* 引数を持たない静的メソッド`Install`を持っていること。
+
 ### スタートアップからスクリプトファイルを登録解除する
 
 ```maxscript
