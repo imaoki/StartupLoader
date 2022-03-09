@@ -136,7 +136,7 @@
   assert (actual.Equals expected == true)
   -- スタートアップファイルの存在を確認
   actual = ::TestValueStruct (fileClass.Exists expectedStartupFilePath)
-  expected = ::TestValueStruct true
+  expected = ::TestValueStruct false
   assert (actual.Equals expected == true)
 
   /* OnPreSystemShutdown */
@@ -161,9 +161,16 @@
   expected = ::TestValueStruct true
   assert (actual.Equals expected == true)
 
-  testObj.Dump()
+  -- testObj.Dump()
 
   /* Save */
+  actual = ::TestValueStruct (testObj.Save())
+  expected = ::TestValueStruct ok
+  assert (actual.Equals expected == true)
+  -- スタートアップファイルの存在を確認
+  actual = ::TestValueStruct (fileClass.Exists expectedStartupFilePath)
+  expected = ::TestValueStruct true
+  assert (actual.Equals expected == true)
 
   /* UnregisterFile */
   expectedInstallerFlags = #(true)
