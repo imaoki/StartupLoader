@@ -66,7 +66,9 @@ if isProperty ::startupLoader "UnregisterFile" do (
 ::startupLoader.Save()
 ```
 
-## 既定のスタートアップファイルの保存先
+## 補足情報
+
+### 既定のスタートアップファイルの保存先
 
 `C:\Users\ユーザー名\AppData\Local\Autodesk\3dsMax\バージョン\ENU\scripts\startup\StartupLoader.ms`
 
