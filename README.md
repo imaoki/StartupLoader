@@ -1,34 +1,46 @@
 # StartupLoader
 
-スタートアップスクリプトを管理する。
+Manage startup scripts.
+<!-- スタートアップスクリプトを管理する。 -->
 
-## 動作確認
+## Development Environment
+<!-- 開発環境 -->
 
 `3ds Max 2022.3 Update`
 
-## インストール
+## Install
+<!-- インストールする -->
 
-`install.ms`を実行する。
+Execute `install.ms`.
+<!-- `install.ms`を実行する。 -->
 
-## アンインストール
+## Uninstall
+<!-- アンインストールする -->
 
-`uninstall.ms`を実行する。
+Execute `uninstall.ms`.
+<!-- `uninstall.ms`を実行する。 -->
 
-## スタンドアローン版
+## Standalone version
+<!-- スタンドアローン版 -->
 
-### インストール
+### Install
+<!-- インストールする -->
 
-`Distribution\StartupLoader.min.ms`を実行する。
+Execute `Distribution\StartupLoader.min.ms`.
+<!-- `Distribution\StartupLoader.min.ms`を実行する。 -->
 
-### アンインストール
+### Uninstall
+<!-- アンインストールする -->
 
 ```maxscript
 ::startupLoader.Uninstall()
 ```
 
-## 使い方
+## Usage
+<!-- 使い方 -->
 
-### スクリプトファイルをスタートアップに登録する
+### Register script file
+<!-- スクリプトファイルを登録する -->
 
 ```maxscript
 if isProperty ::startupLoader "RegisterFile" do (
@@ -36,7 +48,8 @@ if isProperty ::startupLoader "RegisterFile" do (
 )
 ```
 
-#### インストーラとして評価する
+#### Evaluate as installer
+<!-- インストーラとして評価する -->
 
 ```maxscript
 if isProperty ::startupLoader "RegisterFile" do (
@@ -44,13 +57,17 @@ if isProperty ::startupLoader "RegisterFile" do (
 )
 ```
 
-登録したスクリプトファイルをインストーラとして評価するには以下の条件を満たす必要がある。
+#### Conditions for evaluation as installer
+<!-- インストーラとして評価するための条件 -->
 
-* スクリプトファイルの評価結果が構造体定義であること。
+* The result of the evaluation of the script file must be a structure definition.
+  <!-- スクリプトファイルの評価結果が構造体定義であること。 -->
 
-* 引数を持たない静的メソッド`Install`を持っていること。
+* Must have a static method `Install` with no arguments.
+  <!-- 引数を持たない静的メソッド`Install`を持っていること。 -->
 
-### スタートアップからスクリプトファイルを登録解除する
+### Unregister script file
+<!-- スクリプトファイルを登録解除する -->
 
 ```maxscript
 if isProperty ::startupLoader "UnregisterFile" do (
@@ -58,20 +75,22 @@ if isProperty ::startupLoader "UnregisterFile" do (
 )
 ```
 
-* `UnregisterFile`メソッドの引数には登録時と同じファイルパスを渡す。
+* The argument of the `UnregisterFile` method is the same file path as at the time of registration.
+  <!-- `UnregisterFile`メソッドの引数には登録時と同じファイルパスを渡す。 -->
 
-### スタートアップスクリプトの保存
+### Save Startup Script
+<!-- スタートアップスクリプトの保存 -->
 
 ```maxscript
 ::startupLoader.Save()
 ```
 
-## 補足情報
+## Default startup file location
+<!-- 既定のスタートアップファイルの保存先 -->
 
-### 既定のスタートアップファイルの保存先
+`C:\Users\<UserName>\AppData\Local\Autodesk\3dsMax\<Version>\ENU\scripts\startup\StartupLoader.ms`
 
-`C:\Users\ユーザー名\AppData\Local\Autodesk\3dsMax\バージョン\ENU\scripts\startup\StartupLoader.ms`
-
-## ライセンス
+## License
+<!-- ライセンス -->
 
 [MIT License](https://github.com/imaoki/StartupLoader/blob/main/LICENSE)
