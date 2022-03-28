@@ -102,7 +102,8 @@ struct StartupLoaderStruct (
     if findItem this.scriptFiles scriptFilePath == 0 do (
       append this.installerFlags installer
       append this.scriptFiles scriptFilePath
-      this.notify #(#InstallerFlags, #ScriptFiles)
+      this.notify #InstallerFlags undefined
+      this.notify #ScriptFiles undefined
     )
     findItem this.scriptFiles scriptFilePath > 0
   ),
@@ -158,7 +159,8 @@ struct StartupLoaderStruct (
       if index > 0 do (
         deleteItem this.installerFlags index
         deleteItem this.scriptFiles index
-        this.notify #(#InstallerFlags, #ScriptFiles)
+        this.notify #InstallerFlags undefined
+        this.notify #ScriptFiles undefined
       )
     )
     findItem this.scriptFiles scriptFilePath == 0
@@ -307,13 +309,13 @@ struct StartupLoaderStruct (
   ),
 
   /*-
-  @param params <Array[<Name>]|Any>
-  @param type: <Name>
+  @param type <Name>
+  @param param <Any>
   @returns <OkClass>
   */
-  private fn notify params type: = (
+  private fn notify type param = (
     for observer in this.observers do (
-      observer.Callback observer.Context params type:type
+      observer.Callback observer.Context type param
     )
     ok
   ),

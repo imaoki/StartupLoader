@@ -54,25 +54,21 @@
   local expectedScriptFiles = #()
   local expectedStartupFilePath = SymbolicPaths.GetPathValue "$UserStartupScripts" + @"\StartupLoader.ms"
 
-  local updateObject
-  fn updateObject context params type: = (
-    -- format "updateObject params:% type:%\n" params type
-    if classOf params == Array do (
-      for param in params do (
-        case param of (
-          (#InstallerFlags): (
-            actual = ::TestValueStruct (testObj.GetInstallerFlags())
-            expected = ::TestValueStruct expectedInstallerFlags
-            assert (actual.Equals expected == true)
-          )
-          (#ScriptFiles): (
-            actual = ::TestValueStruct (testObj.GetScriptFiles())
-            expected = ::TestValueStruct expectedScriptFiles
-            assert (actual.Equals expected == true)
-          )
-          default: ()
-        )
+  local testNotification
+  fn testNotification context type param = (
+    -- format "testNotification type:% param:%\n" type param
+    case type of (
+      (#InstallerFlags): (
+        actual = ::TestValueStruct (testObj.GetInstallerFlags())
+        expected = ::TestValueStruct expectedInstallerFlags
+        assert (actual.Equals expected == true)
       )
+      (#ScriptFiles): (
+        actual = ::TestValueStruct (testObj.GetScriptFiles())
+        expected = ::TestValueStruct expectedScriptFiles
+        assert (actual.Equals expected == true)
+      )
+      default: ()
     )
     ok
   )
@@ -91,7 +87,7 @@
   /* Test Start ------------------------------------------------------------- */
   /* インスタンス作成 */
   testObj = testDef()
-  testObj.AddObserver (TestObserverStruct updateObject testObj)
+  testObj.AddObserver (TestObserverStruct testNotification testObj)
   -- グローバル変数の存在を確認
   actual = ::TestValueStruct (GlobalVars.IsGlobal "startupLoader")
   expected = ::TestValueStruct true
