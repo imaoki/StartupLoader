@@ -326,3 +326,5 @@ struct StartupLoaderStruct (
     this.registerPreSystemShutdown()
   )
 )
+::StartupLoaderStruct.Install()
+::StartupLoaderStruct

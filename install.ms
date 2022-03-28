@@ -1,5 +1,5 @@
 /*! © 2022 imaoki | MIT License | https://github.com/imaoki */
 (
-  (fileIn @"StartupLoader.ms").Install()
+  fileIn @"StartupLoader.ms"
   ok
 )
