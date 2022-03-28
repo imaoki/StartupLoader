@@ -219,7 +219,7 @@ struct StartupLoaderStruct (
   ),
 
   /*- @prop <String> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = "1.0.0",
+  private version = "1.1.1",
 
   /*- @returns <Name> */
   public fn StructName = #StartupLoaderStruct,
