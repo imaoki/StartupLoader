@@ -1,5 +1,8 @@
 # StartupLoader
 
+<!-- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/imaoki/StartupLoader)](https://github.com/imaoki/StartupLoader/releases/latest) -->
+[![GitHub](https://img.shields.io/github/license/imaoki/StartupLoader)](https://github.com/imaoki/StartupLoader/blob/main/LICENSE)
+
 Manage startup scripts.
 <!-- スタートアップスクリプトを管理する。 -->
 
