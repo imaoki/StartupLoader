@@ -102,8 +102,6 @@ struct StartupLoaderStruct (
     if findItem this.scriptFiles scriptFilePath == 0 do (
       append this.installerFlags installer
       append this.scriptFiles scriptFilePath
-      this.notify #InstallerFlags undefined
-      this.notify #ScriptFiles undefined
     )
     findItem this.scriptFiles scriptFilePath > 0
   ),
@@ -159,8 +157,6 @@ struct StartupLoaderStruct (
       if index > 0 do (
         deleteItem this.installerFlags index
         deleteItem this.scriptFiles index
-        this.notify #InstallerFlags undefined
-        this.notify #ScriptFiles undefined
       )
     )
     findItem this.scriptFiles scriptFilePath == 0
@@ -219,7 +215,7 @@ struct StartupLoaderStruct (
   ),
 
   /*- @prop <String> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = "1.1.1",
+  private version = "1.2.1",
 
   /*- @returns <Name> */
   public fn StructName = #StartupLoaderStruct,
@@ -266,58 +262,6 @@ struct StartupLoaderStruct (
   */
   public fn GetVersion = (
     this.version
-  ),
-
-  /*- @prop <Array[<Struct:ObserverStruct>]> */
-  private observers = #(),
-
-  /*-
-  @param observer <Struct:ObserverStruct>
-  @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
-  */
-  public fn AddObserver observer = (
-    if this.findObserver observer == 0 do (
-      append this.observers observer
-    )
-    this.findObserver observer > 0
-  ),
-
-  /*-
-  @param observer <Struct:ObserverStruct>
-  @returns <BooleanClass> 成功した場合は`true`、失敗した場合は`false`。
-  */
-  public fn RemoveObserver observer = (
-    local index = this.findObserver observer
-    if index > 0 do (
-      deleteItem this.observers index
-    )
-    this.findObserver observer == 0
-  ),
-
-  /*-
-  @param observer <Struct:ObserverStruct>
-  @returns <Integer>
-  */
-  private fn findObserver observer = (
-    local index = 0
-    for i = 1 to this.observers.Count while index == 0 do (
-      if this.observers[i].Equals observer do (
-        index = i
-      )
-    )
-    index
-  ),
-
-  /*-
-  @param type <Name>
-  @param param <Any>
-  @returns <OkClass>
-  */
-  private fn notify type param = (
-    for observer in this.observers do (
-      observer.Callback observer.Context type param
-    )
-    ok
   ),
 
   on Create do (
