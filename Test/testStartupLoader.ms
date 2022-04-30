@@ -105,8 +105,8 @@
 
   -- testObj.Dump()
 
-  /* Save */
-  actual = ::TestValueStruct (testObj.Save())
+  /* Write */
+  actual = ::TestValueStruct (testObj.Write())
   expected = ::TestValueStruct ok
   assert (actual.Equals expected == true)
   -- スタートアップファイルの存在を確認
