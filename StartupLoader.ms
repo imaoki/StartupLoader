@@ -214,8 +214,8 @@ struct StartupLoaderStruct (
     ok
   ),
 
-  /*- @prop <String> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = "1.3.0",
+  /*- @prop <Array[<Integer>]> バージョン番号。メジャー、マイナー、パッチの順。 */
+  private version = #(1, 3, 0),
 
   /*- @returns <Name> */
   public fn StructName = #StartupLoaderStruct,
@@ -258,7 +258,7 @@ struct StartupLoaderStruct (
   ),
 
   /*-
-  @returns <String>
+  @returns <Array[<Integer>]>
   */
   public fn GetVersion = (
     this.version
