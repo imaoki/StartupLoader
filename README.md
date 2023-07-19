@@ -3,47 +3,52 @@
 <!-- [![GitHub release (latest by date)](https://img.shields.io/github/v/release/imaoki/StartupLoader)](https://github.com/imaoki/StartupLoader/releases/latest) -->
 [![GitHub](https://img.shields.io/github/license/imaoki/StartupLoader)](https://github.com/imaoki/StartupLoader/blob/main/LICENSE)
 
-Manage startup scripts.
-<!-- スタートアップスクリプトを管理する。 -->
+スタートアップスクリプトを管理する。
+<!-- Manage startup scripts. -->
 
-## Development Environment
-<!-- 開発環境 -->
+## ライセンス
+<!-- ## License -->
+
+[MIT License](https://github.com/imaoki/StartupLoader/blob/main/LICENSE)
+
+## 開発環境
+<!-- ## Development Environment -->
 
 `3ds Max 2024`
 
-## Install
-<!-- インストールする -->
+## インストール
+<!-- ## Install -->
 
-Execute `install.ms`.
-<!-- `install.ms`を実行する。 -->
+`install.ms`を実行する。
+<!-- Execute `install.ms`. -->
 
-## Uninstall
-<!-- アンインストールする -->
+## アンインストール
+<!-- ## Uninstall -->
 
-Execute `uninstall.ms`.
-<!-- `uninstall.ms`を実行する。 -->
+`uninstall.ms`を実行する。
+<!-- Execute `uninstall.ms`. -->
 
-## Standalone version
-<!-- スタンドアローン版 -->
+## 単一ファイル版
+<!-- ## Single File Version -->
 
-### Install
-<!-- インストールする -->
+### インストール
+<!-- ### Install -->
 
-Execute `Distribution\StartupLoader.min.ms`.
-<!-- `Distribution\StartupLoader.min.ms`を実行する。 -->
+`Distribution\StartupLoader.min.ms`を実行する。
+<!-- Execute `Distribution\StartupLoader.min.ms`. -->
 
-### Uninstall
-<!-- アンインストールする -->
+### アンインストール
+<!-- ### Uninstall -->
 
 ```maxscript
 ::startupLoader.Uninstall()
 ```
 
-## Usage
-<!-- 使い方 -->
+## 使い方
+<!-- ## Usage -->
 
-### Register script file
-<!-- スクリプトファイルを登録する -->
+### スクリプトファイルを登録する
+<!-- ### Register script file -->
 
 ```maxscript
 if isProperty ::startupLoader "RegisterFile" do (
@@ -51,8 +56,8 @@ if isProperty ::startupLoader "RegisterFile" do (
 )
 ```
 
-#### Evaluate as installer
-<!-- インストーラとして評価する -->
+#### インストーラとして評価する
+<!-- #### Evaluate as installer -->
 
 ```maxscript
 if isProperty ::startupLoader "RegisterFile" do (
@@ -60,17 +65,17 @@ if isProperty ::startupLoader "RegisterFile" do (
 )
 ```
 
-#### Conditions for evaluation as installer
-<!-- インストーラとして評価するための条件 -->
+#### インストーラとして評価するための条件
+<!-- #### Conditions for evaluation as installer -->
 
-* The result of the evaluation of the script file must be a structure definition.
-  <!-- スクリプトファイルの評価結果が構造体定義であること。 -->
+* スクリプトファイルの評価結果が構造体定義であること。
+  <!-- * The result of the evaluation of the script file must be a structure definition. -->
 
-* Must have a static method `Install` with no arguments.
-  <!-- 引数を持たない静的メソッド`Install`を持っていること。 -->
+* 引数を持たない静的メソッド`Install`を持っていること。
+  <!-- * Must have a static method `Install` with no arguments. -->
 
-### Unregister script file
-<!-- スクリプトファイルを登録解除する -->
+### スクリプトファイルを登録解除する
+<!-- ### Unregister script file -->
 
 ```maxscript
 if isProperty ::startupLoader "UnregisterFile" do (
@@ -78,22 +83,17 @@ if isProperty ::startupLoader "UnregisterFile" do (
 )
 ```
 
-* The argument of the `UnregisterFile` method is the same file path as at the time of registration.
-  <!-- `UnregisterFile`メソッドの引数には登録時と同じファイルパスを渡す。 -->
+* `UnregisterFile`メソッドの引数には登録時と同じファイルパスを渡す。
+  <!-- * The argument of the `UnregisterFile` method is the same file path as at the time of registration. -->
 
-### Save Startup Script
-<!-- スタートアップスクリプトの保存 -->
+### スタートアップスクリプトの保存
+<!-- ### Save Startup Script -->
 
 ```maxscript
 ::startupLoader.Write()
 ```
 
-## Default startup file location
-<!-- 既定のスタートアップファイルの保存先 -->
+## 既定のスタートアップファイルの保存先
+<!-- ## Default startup file location -->
 
 `C:\Users\<UserName>\AppData\Local\Autodesk\3dsMax\<Version>\ENU\scripts\startup\StartupLoader.ms`
-
-## License
-<!-- ライセンス -->
-
-[MIT License](https://github.com/imaoki/StartupLoader/blob/main/LICENSE)
