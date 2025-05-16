@@ -201,7 +201,7 @@ struct StartupLoaderStruct (
   @returns <OkClass>
   */
   private fn registerPreSystemShutdown = (
-    Callbacks.AddScript #PreSystemShutdown this.OnPreSystemShutdown id:#StartupLoader
+    Callbacks.AddScript #PreSystemShutdown "::startupLoader.OnPreSystemShutdown()" id:#StartupLoader
     ok
   ),
 
@@ -215,7 +215,7 @@ struct StartupLoaderStruct (
   ),
 
   /*- @prop <Array[<Integer>]> バージョン番号。メジャー、マイナー、パッチの順。 */
-  private version = #(1, 3, 0),
+  private version = #(1, 3, 1),
 
   /*- @returns <Name> */
   public fn StructName = #StartupLoaderStruct,
